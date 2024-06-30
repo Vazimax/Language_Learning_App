@@ -11,6 +11,10 @@ replicate.Client(api_token=REPLICATE_API_TOKEN)
 
 st.title('Language Learning')
 
+# Choose the language
+languages = ['English', 'Arabic', 'Darija', 'German','Spanich','French','Chinese','Japanese']
+language = st.selectbox('Select your language level', languages)
+
 # Define language levels
 levels = ['Absolute Beginner', 'Beginner', 'Intermediate', 'Advanced']
 level = st.selectbox('Select your language level', levels)
@@ -60,7 +64,7 @@ def parse_questions(text):
 if st.button('Generate Text'):
     if topic and level:
         with st.spinner('Generating the text ...'):
-            prompt = f"Generate a short text (about 100-150 words) for language learning. The text should be suitable for a {level} level learner and cover the topic of {topic}."
+            prompt = f"Generate a short text (about 100-150 words) for language learning. The text should be suitable for a {level} level learner and cover the topic of {topic} in {language}."
             response = get_response(prompt)
             if response:
                 st.session_state.text = response.strip()
